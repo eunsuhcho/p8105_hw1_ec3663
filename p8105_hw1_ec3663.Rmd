@@ -17,7 +17,7 @@ data("early_january_weather")
 ```{r p1_ejw_descriptors}
 nrow(early_january_weather)
 ncol(early_january_weather)
-temp <- early_january_weather$temp
+temp = early_january_weather$temp
 mean(temp)
 sd(temp)
 ```
@@ -29,5 +29,22 @@ sd(temp)
 library(ggplot2)
 ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid)) + geom_point()
 ggsave("temp_vs_hour_by_humid.png")
+```
+
+# Problem 2
+
+## Creating the dataframe
+```{r setup, include = FALSE}
+library(tidyverse)
+```
+
+```{r p2_df_create}
+p2_df =
+  tibble(
+    samp = rnorm(10),
+    vec_logical = (samp > 0),
+    vec_char = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
+    vec_fac = factor(c("small", "medium", "large", "small", "medium", "large", "small", "medium", "large", "small"))
+  )
 ```
 
