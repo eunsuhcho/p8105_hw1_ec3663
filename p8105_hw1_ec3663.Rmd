@@ -1,0 +1,8 @@
+---
+title: "p8105_hw1_ec3663"
+author: "Eunsuh Cho"
+date: "2023-09-19"
+output: github_document
+---
+
+
