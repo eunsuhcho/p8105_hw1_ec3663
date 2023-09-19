@@ -10,6 +10,7 @@ output: github_document
 ## Loading the dataset
 ```{r p1_loading_ejw}
 library(moderndive)
+library(tidyverse)
 data("early_january_weather")
 ```
 
@@ -17,9 +18,10 @@ data("early_january_weather")
 ```{r p1_ejw_descriptors}
 nrow(early_january_weather)
 ncol(early_january_weather)
-temp = early_january_weather$temp
-mean(temp)
-sd(temp)
+mean_temp = mean(pull(early_january_weather, temp))
+print(mean_temp)
+sd_temp = sd(pull(early_january_weather, temp))
+print(sd_temp)
 ```
 
 `This dataset contains weather factors for the first half of January 2013. It has 358 observations and 15 variables, including dewpoint, humidity, wind characteristics, precipitation, and pressure. The mean temperature is 39.58 degrees Fahrenheit with a standard deviation of 7.06.`
@@ -48,3 +50,19 @@ p2_df =
   )
 ```
 
+## Taking the means of the variables
+
+```{r p2_df_means}
+mean_samp = mean(pull(p2_df, samp))
+print(mean_samp)
+mean_vec_logical = mean(pull(p2_df, vec_logical))
+print(mean_vec_logical)
+mean_vec_char = mean(pull(p2_df, vec_char))
+print(mean_vec_char)
+mean_vec_fac = mean(pull(p2_df, vec_fac))
+print(mean_vec_fac)
+```
+
+## What works and what doesn't?
+
+`The only variables that have a mean are samp (the random sample) and vec_logical (the logical vector). Samp has a mean of -0.43 and vec_logical has a mean of 0.3 The variables that do not work are vec_char (the character vector) and vec_fac (the factor vector), as the console provides a message stating that the argument is not numeric or logical.`
