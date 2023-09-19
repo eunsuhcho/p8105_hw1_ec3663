@@ -7,9 +7,21 @@ output: github_document
 
 # Problem 1
 
-```{r p1_ejw}
+## Loading the dataset
+```{r p1_loading_ejw}
 library(moderndive)
 data("early_january_weather")
 ```
+
+## Discussion of dataset
+```{r p1_ejw_descriptors}
+nrow(early_january_weather)
+ncol(early_january_weather)
+temp <- early_january_weather$temp
+mean(temp)
+sd(temp)
+```
+
+`This dataset contains weather factors for the first half of January 2013. It has 358 observations and 15 variables, including dewpoint, humidity, wind characteristics, precipitation, and pressure. The mean temperature is 39.58 degrees Fahrenheit with a standard deviation of 7.06.`
 
 
