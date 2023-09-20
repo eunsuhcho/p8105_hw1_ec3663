@@ -5,12 +5,11 @@ date: "2023-09-19"
 output: github_document
 ---
 
-# Problem 1
-
 ```{r setup, include = FALSE}
 library(tidyverse)
 ```
 
+# Problem 1
 
 ## Loading the dataset
 ```{r p1_loading_ejw}
@@ -69,4 +68,12 @@ print(mean_vec_logical)
 
 `The only variables that have a mean are samp (the random sample) and vec_logical (the logical vector). The variables that do not work are vec_char (the character vector) and vec_factor (the factor vector), as the console provides a message stating that the argument is not numeric or logical.`
 
+## Converting the variables using the as.numeric function
 
+```{r var_convert, echo = TRUE, results = FALSE, warning = FALSE}
+as.numeric(pull(p2_df, vec_logical))
+as.numeric(pull(p2_df, vec_char))
+as.numeric(pull(p2_df, vec_factor))
+```
+
+`The as.numeric function can be applied to the logical and factor variables but not the character variable. The logical variable's elements are binary (TRUE/FALSE), and the factor variables are ordinal (S, M, L), allowing the as.numeric function to assign numbers (0, 1 or 1, 2, 3) to the elements. The character variable, however, has no natural order to its elements. The factor variable's mean could be taken once the as.numeric function has been applied, but the character variable's mean can not be taken even after applying the as.numeric function.`
