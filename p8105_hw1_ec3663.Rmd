@@ -7,10 +7,14 @@ output: github_document
 
 # Problem 1
 
+```{r setup, include = FALSE}
+library(tidyverse)
+```
+
+
 ## Loading the dataset
 ```{r p1_loading_ejw}
 library(moderndive)
-library(tidyverse)
 data("early_january_weather")
 ```
 
@@ -36,17 +40,14 @@ ggsave("temp_vs_hour_by_humid.png")
 # Problem 2
 
 ## Creating the dataframe
-```{r setup, include = FALSE}
-library(tidyverse)
-```
 
 ```{r p2_df_create}
 p2_df =
   tibble(
-    samp = rnorm(10),
-    vec_logical = (samp > 0),
+    samp = rnorm(10, sd = 1),
+    vec_logical = samp > 0,
     vec_char = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
-    vec_fac = factor(c("small", "medium", "large", "small", "medium", "large", "small", "medium", "large", "small"))
+    vec_factor = factor(rep(c("S", "M", "L"), length.out = 10))
   )
 ```
 
@@ -54,15 +55,18 @@ p2_df =
 
 ```{r p2_df_means}
 mean_samp = mean(pull(p2_df, samp))
-print(mean_samp)
 mean_vec_logical = mean(pull(p2_df, vec_logical))
-print(mean_vec_logical)
 mean_vec_char = mean(pull(p2_df, vec_char))
-print(mean_vec_char)
-mean_vec_fac = mean(pull(p2_df, vec_fac))
-print(mean_vec_fac)
+mean_vec_factor = mean(pull(p2_df, vec_factor))
 ```
 
 ## What works and what doesn't?
 
-`The only variables that have a mean are samp (the random sample) and vec_logical (the logical vector). Samp has a mean of -0.43 and vec_logical has a mean of 0.3 The variables that do not work are vec_char (the character vector) and vec_fac (the factor vector), as the console provides a message stating that the argument is not numeric or logical.`
+```{r printing_means}
+print(mean_samp)
+print(mean_vec_logical)
+```
+
+`The only variables that have a mean are samp (the random sample) and vec_logical (the logical vector). The variables that do not work are vec_char (the character vector) and vec_factor (the factor vector), as the console provides a message stating that the argument is not numeric or logical.`
+
+
